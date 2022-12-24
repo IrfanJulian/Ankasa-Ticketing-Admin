@@ -1,30 +1,25 @@
 import React, { useEffect } from 'react'
-import axios from 'axios'
+// import axios from 'axios'
 import Navbar from '../../../components/Navbar'
 import garuda from '../../../assets/garuda.png'
 import dlt from '../../../assets/delete.png'
 import edit from '../../../assets/edit.png'
 import { useNavigate } from 'react-router-dom'
-// import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+// import { getFlight } from '../../../config/redux/action/flightAction'
+import { getDataTicket } from '../../../config/redux/action/ticketAction'
 
 const Home = () => {
 
     const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const { dataTicketResult } = useSelector((state) => state.ticket)
+    const payload = dataTicketResult.data
 
     useEffect(()=>{
-        const getData = async () => {
-            try {
-                const result = await axios({
-                    method: 'GET',
-                    url: 'https://63a1f7a4ba35b96522ed326e.mockapi.io/flight'
-                })
-                console.log(result);
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        getData()
-    }, [])
+        console.log('1.');
+        dispatch(getDataTicket());
+    }, [dispatch])
 
   return (
     <div>
@@ -45,7 +40,10 @@ const Home = () => {
                 <div className="tittle border border-b-8 border-t-8 py-3 w-1/12">
                     <p className='text-xl text-center font-semibold'>Name</p>
                 </div>
-                <div className="tittle border border-b-8 border-t-8 py-3 w-2/12">
+                <div className="tittle border border-b-8 border-t-8 py-3 w-1/12">
+                    <p className='text-xl text-center font-semibold'>Origin</p>
+                </div>
+                <div className="tittle border border-b-8 border-t-8 py-3 w-1/12">
                     <p className='text-xl text-center font-semibold'>Destination</p>
                 </div>
                 <div className="tittle border border-b-8 border-t-8 py-3 w-1/12">
@@ -67,28 +65,31 @@ const Home = () => {
                     <p className='text-xl text-center font-semibold'>Manage</p>
                 </div>
             </div>
-
-            <div className="list flex">
+            { payload ? payload.map((ticket)=>            
+            <div className="list flex" key={ticket.id}>
                 <div className="tittle grid border py-3 w-1/12">
-                    <p className='text-xl my-auto text-center'>25</p>
+                    <p className='text-xl my-auto text-center'>{ticket.id}</p>
                 </div>
                 <div className="tittle grid border py-3 w-1/12">
                     <p className='text-xl my-auto text-center'>Garuda</p>
                 </div>
-                <div className="tittle grid border py-3 w-2/12">
-                    <p className='text-xl my-auto text-center'>IDN to UEA</p>
+                <div className="tittle grid border py-3 w-1/12">
+                    <p className='text-xl my-auto text-center'>{ticket.origin}</p>
                 </div>
                 <div className="tittle grid border py-3 w-1/12">
-                    <p className='text-xl my-auto text-center'>15.30</p>
+                    <p className='text-xl my-auto text-center'>{ticket.destination}</p>
                 </div>
                 <div className="tittle grid border py-3 w-1/12">
-                    <p className='text-xl my-auto text-center'>19.30</p>
+                    <p className='text-xl my-auto text-center'>{ticket.departure}</p>
                 </div>
                 <div className="tittle grid border py-3 w-1/12">
-                    <p className='text-xl my-auto text-center'>$ 150.0</p>
+                    <p className='text-xl my-auto text-center'>{ticket.arrived}</p>
                 </div>
                 <div className="tittle grid border py-3 w-1/12">
-                    <p className='text-xl my-auto text-center'>Business</p>
+                    <p className='text-xl my-auto text-center'>{ticket.price}</p>
+                </div>
+                <div className="tittle grid border py-3 w-1/12">
+                    <p className='text-xl my-auto text-center'>{ticket.type}</p>
                 </div>
                 <div className="tittle grid border py-3 w-3/12">
                     <img src={garuda} alt="icon" className='w-[20rem] mx-auto' />
@@ -98,28 +99,28 @@ const Home = () => {
                     <button className='mx-auto' onClick={()=>navigate('/edit-flight')}><img src={edit} alt="icon" className='w-[2rem] h-[2rem]' /></button>
                 </div>
             </div>
-
-            <div className="list flex">
+            ) : 
+                <div className="list flex">
                 <div className="tittle grid border py-3 w-1/12">
-                    <p className='text-xl my-auto text-center'>25</p>
+                    <p className='text-xl my-auto text-center'>dummy</p>
                 </div>
                 <div className="tittle grid border py-3 w-1/12">
-                    <p className='text-xl my-auto text-center'>Garuda</p>
+                    <p className='text-xl my-auto text-center'>dummy</p>
                 </div>
                 <div className="tittle grid border py-3 w-2/12">
-                    <p className='text-xl my-auto text-center'>IDN to UEA</p>
+                    <p className='text-xl my-auto text-center'>dummy</p>
                 </div>
                 <div className="tittle grid border py-3 w-1/12">
-                    <p className='text-xl my-auto text-center'>15.30</p>
+                    <p className='text-xl my-auto text-center'>dummy</p>
                 </div>
                 <div className="tittle grid border py-3 w-1/12">
-                    <p className='text-xl my-auto text-center'>19.30</p>
+                    <p className='text-xl my-auto text-center'>dummy</p>
                 </div>
                 <div className="tittle grid border py-3 w-1/12">
-                    <p className='text-xl my-auto text-center'>$ 150.0</p>
+                    <p className='text-xl my-auto text-center'>dummy</p>
                 </div>
                 <div className="tittle grid border py-3 w-1/12">
-                    <p className='text-xl my-auto text-center'>Business</p>
+                    <p className='text-xl my-auto text-center'>dummy</p>
                 </div>
                 <div className="tittle grid border py-3 w-3/12">
                     <img src={garuda} alt="icon" className='w-[20rem] mx-auto' />
@@ -129,6 +130,9 @@ const Home = () => {
                     <button className='mx-auto' onClick={()=>navigate('/edit-flight')}><img src={edit} alt="icon" className='w-[2rem] h-[2rem]' /></button>
                 </div>
             </div>
+            }
+
+
         </div>
 
     </div>

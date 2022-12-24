@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
 import authReducer from './authReducer'
-import flightReducer from './flightReducer'
+import ticketReducer from './ticketReducer'
 
 const rootReducer = combineReducers({
-    fight: flightReducer,
-    auth: authReducer
+    auth: authReducer,
+    ticket: ticketReducer
 })
 
 export default rootReducer

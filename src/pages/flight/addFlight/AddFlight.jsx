@@ -1,25 +1,30 @@
-import axios from 'axios'
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import Navbar from '../../../components/Navbar'
+import { addTicket } from '../../../config/redux/action/ticketAction'
 
 const AddFlight = () => {
 
-  const [photo, setPhoto] = useState()
+  const dispatch = useDispatch()
+  // const [photo, setPhoto] = useState()
   const [form, setForm] = useState({
-    name: '',
+    airlines_id: '',
+    origin: '',
     destination: '',
     departure: '',
     arrived: '',
+    stock: '',
+    code: '',
     price: '',
-    class: '',
+    type: '',
     gate: '',
     terminal: ''
   })
 
-  const handlePhoto = (e) => {
-    const image = e.target.files[0]
-    setPhoto(image)
-  }
+  // const handlePhoto = (e) => {
+  //   const image = e.target.files[0]
+  //   setPhoto(image)
+  // }
 
   const handleChange = (e) => {
     setForm({
@@ -30,41 +35,49 @@ const AddFlight = () => {
 
   const handleUpload = async (e) => {
     e.preventDefault()
-    const formData = new FormData()
-    formData.append('name', form.name)
-    formData.append('destination', form.destination)
-    formData.append('departure', form.departure)
-    formData.append('arrived', form.arrived)
-    formData.append('price', form.price)
-    formData.append('class', form.class)
-    formData.append('gate', form.gate)
-    formData.append('terminal', form.terminal)
-    formData.append('photo', photo,photo.name)
-    console.log(formData);
-    const res = await axios.post('https://63a1f7a4ba35b96522ed326e.mockapi.io/flight', formData)
-    console.log(res);
+    // const formData = new FormData()
+    // formData.append('airlines_id', form.airlines_id)
+    // formData.append('origin', form.origin)
+    // formData.append('destination', form.destination)
+    // formData.append('departure', form.departure)
+    // formData.append('arrived', form.arrived)
+    // formData.append('stock', form.stock)
+    // formData.append('code', form.code)
+    // formData.append('price', form.price)
+    // formData.append('type', form.type)
+    // formData.append('gate', form.gate)
+    // formData.append('terminal', form.terminal)
+    // formData.append('photo', photo,photo.name)
+    try {
+      dispatch(addTicket(form))
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
     <div>
       <header>
-        <Navbar />
+        <Navbar tittle='List Airlines' link='/airlines' />
       </header>
       <div className='container mx-auto mt-10'>
         <form onSubmit={handleUpload} className='grid'>
           <p className='text-3xl font-bold mb-5'>Add Flights :</p>
-          <input type="text" name='name' onChange={handleChange} value={form.name} placeholder='Airline' className='border-b-2 text-xl py-5 px-3 mt-5 w-1/2 font-semibold outline-none' />
+          <input type="text" name='airlines_id' onChange={handleChange} value={form.airlines_id} placeholder='Airline' className='border-b-2 text-xl py-5 px-3 mt-5 w-1/2 font-semibold outline-none' />
+          <input type="text" name='origin' onChange={handleChange} value={form.origin} placeholder='Origin' className='border-b-2 text-xl py-5 px-3 mt-5 w-1/2 font-semibold outline-none' />
           <input type="text" name='destination' onChange={handleChange} value={form.destination} placeholder='Destination' className='border-b-2 text-xl py-5 px-3 mt-5 w-1/2 font-semibold outline-none' />
           <input type="text" name='departure' onChange={handleChange} value={form.departure} placeholder='Departure' className='border-b-2 text-xl py-5 px-3 mt-5 w-1/2 font-semibold outline-none' />
           <input type="text" name='arrived' onChange={handleChange} value={form.arrived} placeholder='Arrived' className='border-b-2 text-xl py-5 px-3 mt-5 w-1/2 font-semibold outline-none' />
+          <input type="text" name='stock' onChange={handleChange} value={form.stock} placeholder='stock' className='border-b-2 text-xl py-5 px-3 mt-5 w-1/2 font-semibold outline-none' />
+          <input type="text" name='code' onChange={handleChange} value={form.code} placeholder='code' className='border-b-2 text-xl py-5 px-3 mt-5 w-1/2 font-semibold outline-none' />
           <input type="text" name='price' onChange={handleChange} value={form.price} placeholder='Price' className='border-b-2 text-xl py-5 px-3 mt-5 w-1/2 font-semibold outline-none' />
-          <input type="text" name='class' onChange={handleChange} value={form.class} placeholder='Class' className='border-b-2 text-xl py-5 px-3 mt-5 w-1/2 font-semibold outline-none' />
+          <input type="text" name='type' onChange={handleChange} value={form.type} placeholder='Class' className='border-b-2 text-xl py-5 px-3 mt-5 w-1/2 font-semibold outline-none' />
           <input type="text" name='gate' onChange={handleChange} value={form.gate} placeholder='Gate' className='border-b-2 text-xl py-5 px-3 mt-5 w-1/2 font-semibold outline-none' />
           <input type="text" name='terminal' onChange={handleChange} value={form.terminal} placeholder='Terminal' className='border-b-2 text-xl py-5 px-3 mt-5 w-1/2 font-semibold outline-none' />
-          <div className="flex my-10">
+          {/* <div className="flex my-10">
             <p className='text-xl font-semibold text-gray-400 pl-3'>Photo</p>
             <input name='photo' onChange={handlePhoto} type="file" className='ml-10' />
-          </div>
+          </div> */}
           <button type='submit' className='mb-20 mt-5 bg-[#2395FF] py-6 w-1/2 rounded-xl text-white text-xl font-semibold'>Add Flight</button>
         </form>
       </div>
