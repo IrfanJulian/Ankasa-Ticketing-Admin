@@ -3,6 +3,7 @@ import Navbar from '../../components/Navbar'
 import garuda from '../../assets/garuda.png'
 
 const DetailAirline = () => {
+
   return (
     <div>
       <Navbar tittle='List Airlines' link='/airlines' />

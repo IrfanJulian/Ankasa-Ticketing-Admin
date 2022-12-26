@@ -1,9 +1,11 @@
-import { GET_DATA_AIRLINES } from '../action/airlinesAction';
+import { GET_DATA_AIRLINES, DELETE_DATA_AIRLINES } from '../action/airlinesAction';
 
 const initialState = {
     dataAirlinestResult: false,
     isLoading: false,
     error: false,
+
+    deleteAirlinesResult: false 
 }
 
 const airlines = (state = initialState, action) => {
@@ -12,6 +14,14 @@ const airlines = (state = initialState, action) => {
             return{
                 ...state,
                 dataAirlinesResult: action.payload.data,
+                isLoading: action.payload.isLoading,
+                error: action.payload.errorMessage
+            }
+
+        case DELETE_DATA_AIRLINES:
+            return{
+                ...state,
+                deleteAirlinesResult: action.payload.data,
                 isLoading: action.payload.isLoading,
                 error: action.payload.errorMessage
             }

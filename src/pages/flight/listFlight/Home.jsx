@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react'
-// import axios from 'axios'
 import Navbar from '../../../components/Navbar'
 import garuda from '../../../assets/garuda.png'
-import dlt from '../../../assets/delete.png'
+// import dlt from '../../../assets/delete.png'
 import edit from '../../../assets/edit.png'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-// import { getFlight } from '../../../config/redux/action/flightAction'
-import { getDataTicket } from '../../../config/redux/action/ticketAction'
+import { deleteTicket, getDataTicket } from '../../../config/redux/action/ticketAction'
+import PopupDelete from '../../../components/popupDelete'
 
 const Home = () => {
 
@@ -19,7 +18,17 @@ const Home = () => {
     useEffect(()=>{
         console.log('1.');
         dispatch(getDataTicket());
-    }, [dispatch])
+    }, [dispatch]);
+
+    const handleDelete = (id) => {
+        try {
+            dispatch(deleteTicket(id))
+            alert('delete success')
+        } catch (error) {
+            console.log(error);
+            alert('delete data failed')
+        }
+    }
 
   return (
     <div>
@@ -65,13 +74,13 @@ const Home = () => {
                     <p className='text-xl text-center font-semibold'>Manage</p>
                 </div>
             </div>
-            { payload ? payload.map((ticket)=>            
+            { payload ? payload.map((ticket)=>      
             <div className="list flex" key={ticket.id}>
                 <div className="tittle grid border py-3 w-1/12">
                     <p className='text-xl my-auto text-center'>{ticket.id}</p>
                 </div>
                 <div className="tittle grid border py-3 w-1/12">
-                    <p className='text-xl my-auto text-center'>Garuda</p>
+                    <p className='text-xl my-auto text-center'>{ticket.name}</p>
                 </div>
                 <div className="tittle grid border py-3 w-1/12">
                     <p className='text-xl my-auto text-center'>{ticket.origin}</p>
@@ -95,8 +104,8 @@ const Home = () => {
                     <img src={garuda} alt="icon" className='w-[20rem] mx-auto' />
                 </div>
                 <div className="tittle flex border py-3 w-1/12">
-                    <button className='mx-auto' onClick={()=>navigate('/edit-flight')}><img src={dlt} alt="icon" className='w-[2rem] h-[2rem]' /></button>
-                    <button className='mx-auto' onClick={()=>navigate('/edit-flight')}><img src={edit} alt="icon" className='w-[2rem] h-[2rem]' /></button>
+                    <PopupDelete onClick={()=>handleDelete(ticket.id)} />
+                    <button className='mx-auto' onClick={()=>navigate(`/edit-flight/${ticket.id}`)}><img src={edit} alt="icon" className='w-[2rem] h-[2rem]' /></button>
                 </div>
             </div>
             ) : 

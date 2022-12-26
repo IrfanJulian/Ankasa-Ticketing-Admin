@@ -1,16 +1,17 @@
 import React, { useEffect } from 'react'
 import Navbar from '../../components/Navbar'
-import garuda from '../../assets/garuda.png'
-import { Link } from 'react-router-dom'
+// import garuda from '../../assets/garuda.png'
+// import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { getDataAirlines } from '../../config/redux/action/airlinesAction'
+import { deleteDataAirlines, getDataAirlines } from '../../config/redux/action/airlinesAction'
+import PopupDelete from '../../components/popupDelete'
 
 const AirLines = () => {
 
     const dispatch = useDispatch()
     const { dataAirlinesResult } = useSelector((state)=> state.airlines)
-    const payload = dataAirlinesResult.data
-
+    // const payload = dataAirlinesResult.data
+    // console.log(payload);
     useEffect(()=>{
         dispatch(getDataAirlines());
     }, [dispatch])
@@ -39,11 +40,11 @@ const AirLines = () => {
                     <p className='text-xl text-center font-semibold'>Photo</p>
                 </div>
                 <div className="tittle border border-b-8 border-t-8 py-3 w-2/12">
-                    <p className='text-xl text-center font-semibold'>Detail</p>
+                    <p className='text-xl text-center font-semibold'>Delete</p>
                 </div>
             </div>
-            {payload ? payload.map((airlines)=>
-            <div className="list flex">
+            {dataAirlinesResult ? dataAirlinesResult.data.map((airlines)=>
+            <div className="list flex" key={airlines.id}>
                 <div className="tittle grid border py-3 w-1/12">
                     <p className='text-xl my-auto text-center'>{airlines.id}</p>
                 </div>
@@ -57,7 +58,7 @@ const AirLines = () => {
                     <img src={airlines.photo} alt="icon" className='w-[10rem] h-[10rem] mx-auto' />
                 </div>
                 <div className="tittle grid border py-3 w-2/12">
-                    <Link to={'/detail-airline'} className='mx-auto my-auto'><p className='text-xl font-semibold text-[#2395FF]'>Detail</p></Link>
+                    <PopupDelete onClick={()=>dispatch(deleteDataAirlines(airlines.id))} />
                 </div>
             </div>
             ) : <p className='text*4xl font-bold'>. . .Loading</p>}
