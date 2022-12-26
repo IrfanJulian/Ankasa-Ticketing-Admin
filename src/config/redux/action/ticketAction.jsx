@@ -4,8 +4,10 @@ export const GET_DATA_TICKET = "GET_DATA_TICKET";
 export const ADD_TICKET = "ADD_TICKET";
 export const DELETE_DATA_TICKET = "DELETE_DATA_TICKET";
 export const EDIT_DATA_TICKET = "EDIT_DATA_TICKET";
+const token = localStorage.getItem('token')
 
 export const getDataTicket = () => {
+
     return(dispatch) => {
 
         console.log('2.');
@@ -22,7 +24,10 @@ export const getDataTicket = () => {
         // getData 
         axios({
             method: 'GET',
-            url: 'http://localhost:3006/ticket/getstockticket'
+            url: 'https://gentle-tights-jay.cyclic.app/stock-ticket/getstockticket',
+            headers: {
+                authorization: `Bearer ${token}`
+            }
         })
         .then((response) => {
             console.log('3.')
@@ -66,8 +71,11 @@ export const addTicket = (data) => {
         // getData 
         axios({
             method: 'POST',
-            url: 'http://localhost:3006/ticket/register',
-            data: data
+            url: 'https://gentle-tights-jay.cyclic.app/stock-ticket/register',
+            data: data,
+            headers: {
+                authorization: `Bearer ${token}`
+            }
         })
         .then((response) => {
             console.log('3.')
@@ -112,7 +120,10 @@ export const deleteTicket = (id) => {
         // getData 
         axios({
             method: 'DELETE',
-            url: `http://localhost:3006/ticket/delete/${id}`
+            url: `https://gentle-tights-jay.cyclic.app/stock-ticket/delete/${id}`,
+            headers: {
+                authorization: `Bearer ${token}`
+            }
         })
         .then((response) => {
             console.log('3.')
@@ -156,8 +167,11 @@ export const editTicket = (id, data) => {
         // getData 
         axios({
             method: 'PUT',
-            url: `http://localhost:3006/ticket/edit/${id}`,
-            data: data
+            url: `https://gentle-tights-jay.cyclic.app/stock-ticket/edit/${id}`,
+            data: data,
+            headers: {
+                authorization: `Bearer ${token}`
+            }
         })
         .then((response) => {
             console.log('3.')

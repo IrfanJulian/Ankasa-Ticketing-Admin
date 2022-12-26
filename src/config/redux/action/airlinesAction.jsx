@@ -3,6 +3,7 @@ import axios from "axios";
 export const GET_DATA_AIRLINES = 'GET_DATA_AIRLINES';
 export const ADD_DATA_AIRLINES = 'ADD_DATA_AIRLINES';
 export const DELETE_DATA_AIRLINES = 'DELETE_DATA_AIRLINES';
+const token = localStorage.getItem('token')
 
 export const getDataAirlines = () => {
     return(dispatch) => {
@@ -21,7 +22,10 @@ export const getDataAirlines = () => {
         // getData 
         axios({
             method: 'GET',
-            url: 'http://localhost:3006/airlines/all-airlines'
+            url: 'https://gentle-tights-jay.cyclic.app/airlines/all-airlines',
+            headers: {
+                authorization: `Bearer ${token}`
+            }
         })
         .then((response) => {
             console.log('3.')
@@ -66,8 +70,11 @@ export const addAirlines = (data) => {
         // getData 
         axios({
             method: 'POST',
-            url: 'http://localhost:3006/airlines/register',
-            data: data
+            url: 'https://gentle-tights-jay.cyclic.app/airlines/register',
+            data: data,
+            headers: {
+                authorization: `Bearer ${token}`
+            }
         })
         .then((response) => {
             console.log('3.')
@@ -112,7 +119,10 @@ export const deleteDataAirlines = (id) => {
         // getData 
         axios({
             method: 'DELETE',
-            url: `http://localhost:3006/airlines/delete/${id}`
+            url: `https://gentle-tights-jay.cyclic.app/airlines/delete/${id}`,
+            headers: {
+                authorization: `Bearer ${token}`
+            }
         })
         .then((response) => {
             console.log('3.')
