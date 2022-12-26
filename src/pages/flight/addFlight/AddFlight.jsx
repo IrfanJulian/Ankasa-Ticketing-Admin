@@ -66,7 +66,7 @@ const AddFlight = () => {
           <input type="text" name='airlines_id' onChange={handleChange} value={form.airlines_id} placeholder='Airline' className='border-b-2 text-xl py-5 px-3 mt-5 w-1/2 font-semibold outline-none' />
           <input type="text" name='origin' onChange={handleChange} value={form.origin} placeholder='Origin' className='border-b-2 text-xl py-5 px-3 mt-5 w-1/2 font-semibold outline-none' />
           <input type="text" name='destination' onChange={handleChange} value={form.destination} placeholder='Destination' className='border-b-2 text-xl py-5 px-3 mt-5 w-1/2 font-semibold outline-none' />
-          <input type="text" name='departure' onChange={handleChange} value={form.departure} placeholder='Departure' className='border-b-2 text-xl py-5 px-3 mt-5 w-1/2 font-semibold outline-none' />
+          <input type="time" name='departure' onChange={handleChange} value={form.departure} placeholder='Departure' className='border-b-2 text-xl py-5 px-3 mt-5 w-1/2 font-semibold outline-none' />
           <input type="text" name='arrived' onChange={handleChange} value={form.arrived} placeholder='Arrived' className='border-b-2 text-xl py-5 px-3 mt-5 w-1/2 font-semibold outline-none' />
           <input type="text" name='stock' onChange={handleChange} value={form.stock} placeholder='stock' className='border-b-2 text-xl py-5 px-3 mt-5 w-1/2 font-semibold outline-none' />
           <input type="text" name='code' onChange={handleChange} value={form.code} placeholder='code' className='border-b-2 text-xl py-5 px-3 mt-5 w-1/2 font-semibold outline-none' />

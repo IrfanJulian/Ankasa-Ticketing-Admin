@@ -38,7 +38,7 @@ const Home = () => {
                     <p className='text-xl text-center font-semibold'>ID Flight</p>
                 </div>
                 <div className="tittle border border-b-8 border-t-8 py-3 w-1/12">
-                    <p className='text-xl text-center font-semibold'>Name</p>
+                    <p className='text-xl text-center font-semibold'>Airlines</p>
                 </div>
                 <div className="tittle border border-b-8 border-t-8 py-3 w-1/12">
                     <p className='text-xl text-center font-semibold'>Origin</p>
@@ -100,35 +100,8 @@ const Home = () => {
                 </div>
             </div>
             ) : 
-                <div className="list flex">
-                <div className="tittle grid border py-3 w-1/12">
-                    <p className='text-xl my-auto text-center'>dummy</p>
-                </div>
-                <div className="tittle grid border py-3 w-1/12">
-                    <p className='text-xl my-auto text-center'>dummy</p>
-                </div>
-                <div className="tittle grid border py-3 w-2/12">
-                    <p className='text-xl my-auto text-center'>dummy</p>
-                </div>
-                <div className="tittle grid border py-3 w-1/12">
-                    <p className='text-xl my-auto text-center'>dummy</p>
-                </div>
-                <div className="tittle grid border py-3 w-1/12">
-                    <p className='text-xl my-auto text-center'>dummy</p>
-                </div>
-                <div className="tittle grid border py-3 w-1/12">
-                    <p className='text-xl my-auto text-center'>dummy</p>
-                </div>
-                <div className="tittle grid border py-3 w-1/12">
-                    <p className='text-xl my-auto text-center'>dummy</p>
-                </div>
-                <div className="tittle grid border py-3 w-3/12">
-                    <img src={garuda} alt="icon" className='w-[20rem] mx-auto' />
-                </div>
-                <div className="tittle flex border py-3 w-1/12">
-                    <button className='mx-auto' onClick={()=>navigate('/edit-flight')}><img src={dlt} alt="icon" className='w-[2rem] h-[2rem]' /></button>
-                    <button className='mx-auto' onClick={()=>navigate('/edit-flight')}><img src={edit} alt="icon" className='w-[2rem] h-[2rem]' /></button>
-                </div>
+            <div>
+                <p className='text-4xl font-bold'>. . . Please Wait</p>
             </div>
             }
 
