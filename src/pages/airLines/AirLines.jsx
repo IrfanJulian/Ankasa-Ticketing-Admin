@@ -1,14 +1,16 @@
 import React, { useEffect } from 'react'
 import Navbar from '../../components/Navbar'
-// import garuda from '../../assets/garuda.png'
-// import { Link } from 'react-router-dom'
+import edit from '../../assets/edit.png'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteDataAirlines, getDataAirlines } from '../../config/redux/action/airlinesAction'
 import PopupDelete from '../../components/popupDelete'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const AirLines = () => {
 
     const dispatch = useDispatch()
+    const {id} = useParams()
+    const navigate = useNavigate()
     const { dataAirlinesResult } = useSelector((state)=> state.airlines)
     // const payload = dataAirlinesResult.data
     // console.log(payload);
@@ -16,9 +18,20 @@ const AirLines = () => {
         dispatch(getDataAirlines());
     }, [dispatch])
 
+    const handleDelete = () => {
+        try {
+            dispatch(deleteDataAirlines(id))
+            alert('delete success')
+            window.location.reload()
+        } catch (error) {
+            console.log(error);
+            alert('delete data failed')
+        }
+    }
+
   return (
     <div>
-        <div>
+        <div className='mb-20'>
         <div>
             <Navbar tittle='Add Airlines' link='/add-airlines' />
         </div>
@@ -54,11 +67,12 @@ const AirLines = () => {
                 <div className="tittle grid border py-3 w-2/12">
                     <p className='text-xl my-auto text-center'>{airlines.phone}</p>
                 </div>
-                <div className="tittle grid border py-3 w-4/12">
+                <div className="tittle grid border py-5 w-4/12">
                     <img src={airlines.photo} alt="icon" className='w-[8rem] h-[5rem] mx-auto' />
                 </div>
                 <div className="tittle grid border py-3 w-2/12">
-                    <PopupDelete onClick={()=>dispatch(deleteDataAirlines(airlines.id))} />
+                    <PopupDelete onClick={()=>handleDelete(airlines.id)} />
+                    <button onClick={()=>navigate(`/detail-airline/${airlines.id}`)} className='w-[2rem] h-[2rem] mx-auto mt-3'><img src={edit} className='w-[2rem] h-[2rem]' alt="edit" /></button>
                 </div>
             </div>
             ) : <p className='text*4xl font-bold'>. . .Loading</p>}

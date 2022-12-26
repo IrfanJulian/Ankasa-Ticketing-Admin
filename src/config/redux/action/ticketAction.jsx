@@ -6,7 +6,7 @@ export const DELETE_DATA_TICKET = "DELETE_DATA_TICKET";
 export const EDIT_DATA_TICKET = "EDIT_DATA_TICKET";
 const token = localStorage.getItem('token')
 
-export const getDataTicket = () => {
+export const getDataTicket = (page) => {
 
     return(dispatch) => {
 
@@ -24,7 +24,7 @@ export const getDataTicket = () => {
         // getData 
         axios({
             method: 'GET',
-            url: 'https://gentle-tights-jay.cyclic.app/stock-ticket/getstockticket',
+            url: `https://gentle-tights-jay.cyclic.app/stock-ticket/getstockticket?page=${page}`,
             headers: {
                 authorization: `Bearer ${token}`
             }
@@ -150,50 +150,50 @@ export const deleteTicket = (id) => {
     }
 }
 
-export const editTicket = (id, data) => {
-    return(dispatch) => {
+// export const editTicket = (id, data) => {
+//     return(dispatch) => {
 
-        console.log('2.');
-        // isLoading 
-        dispatch({
-            type: EDIT_DATA_TICKET,
-            payload: {
-                isLoading: true,
-                data: false,
-                errorMessage: false
-            }
-        })
+//         console.log('2.');
+//         // isLoading 
+//         dispatch({
+//             type: EDIT_DATA_TICKET,
+//             payload: {
+//                 isLoading: true,
+//                 data: false,
+//                 errorMessage: false
+//             }
+//         })
 
-        // getData 
-        axios({
-            method: 'PUT',
-            url: `https://gentle-tights-jay.cyclic.app/stock-ticket/edit/${id}`,
-            data: data,
-            headers: {
-                authorization: `Bearer ${token}`
-            }
-        })
-        .then((response) => {
-            console.log('3.')
-            dispatch({
-                type: EDIT_DATA_TICKET,
-                payload: {
-                    isLoading: false,
-                    data: response.data,
-                    errorMessage: false
-                }
-            })
-        })
-        .catch((error) => {
-            console.log('3.')
-            dispatch({
-                type: EDIT_DATA_TICKET,
-                payload: {
-                    isLoading: false,
-                    data: false,
-                    errorMessage: error.message
-                }
-            })
-        })
-    }
-}
+//         // getData 
+//         axios({
+//             method: 'PUT',
+//             url: `https://gentle-tights-jay.cyclic.app/stock-ticket/edit/${id}`,
+//             data: data,
+//             headers: {
+//                 authorization: `Bearer ${token}`
+//             }
+//         })
+//         .then((response) => {
+//             console.log('3.')
+//             dispatch({
+//                 type: EDIT_DATA_TICKET,
+//                 payload: {
+//                     isLoading: false,
+//                     data: response.data,
+//                     errorMessage: false
+//                 }
+//             })
+//         })
+//         .catch((error) => {
+//             console.log('3.')
+//             dispatch({
+//                 type: EDIT_DATA_TICKET,
+//                 payload: {
+//                     isLoading: false,
+//                     data: false,
+//                     errorMessage: error.message
+//                 }
+//             })
+//         })
+//     }
+// }

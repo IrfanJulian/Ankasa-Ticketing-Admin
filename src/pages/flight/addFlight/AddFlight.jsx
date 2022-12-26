@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import Navbar from '../../../components/Navbar'
 import { addTicket } from '../../../config/redux/action/ticketAction'
 
 const AddFlight = () => {
 
   const dispatch = useDispatch()
-  // const [photo, setPhoto] = useState()
+  const navigate = useNavigate()
   const [form, setForm] = useState({
     airlines_id: '',
     origin: '',
@@ -37,6 +38,8 @@ const AddFlight = () => {
     e.preventDefault()
     try {
       dispatch(addTicket(form))
+      alert('Add ticket success')
+      navigate('/home')
     } catch (error) {
       console.log(error);
     }

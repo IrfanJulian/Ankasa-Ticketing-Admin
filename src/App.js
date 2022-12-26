@@ -19,7 +19,7 @@ function App() {
           <Route path='/edit-flight/:id' element={<EditFlight />} />
           <Route path='/airlines' element={<AirLines />} />
           <Route path='/add-airlines' element={<AddAirlines />} />
-          <Route path='/detail-airline' element={<DetailAirline />} />
+          <Route path='/detail-airline/:id' element={<DetailAirline />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -1,15 +1,13 @@
+import axios from 'axios'
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import Navbar from '../../../components/Navbar'
-import { editTicket } from '../../../config/redux/action/ticketAction'
 
 const EditFlight = () => {
 
   const {id} = useParams()
-  const dispatch = useDispatch()
   const [form, setForm] = useState({
-    id_airlines: '',
+    airlines_id: '',
     origin: '',
     destination: '',
     departure: '',
@@ -29,9 +27,21 @@ const EditFlight = () => {
     })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault()
-    dispatch(editTicket(id, form))
+    const token = localStorage.getItem('token')
+    try {
+      await axios({
+        method: 'PUT',
+        url: `http://localhost:3006/stock-ticket/edit/${id}`,
+        data: form,
+        headers: {
+          authorization: `Bearer ${token}`
+        }
+      })
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -42,7 +52,7 @@ const EditFlight = () => {
     <div className='container mx-auto mt-10'>
       <form onSubmit={handleSubmit} className='grid'>
         <p className='text-3xl font-bold mb-5'>Edit Flights :</p>
-          <input type='text' name='id_airlines' onChange={handleChange} placeholder="ID Airlines" className="text-xl outline-none my-5 text-start w-1/2 border-b-2 font-semibold" />
+          <input type='text' name='airlines_id' onChange={handleChange} placeholder="ID Airlines" className="text-xl outline-none my-5 text-start w-1/2 border-b-2 font-semibold" />
           <input type='text' name='origin' onChange={handleChange} placeholder="Origin" className="text-xl outline-none my-5 text-start w-1/2 border-b-2 font-semibold" />
           <input type='text' name='destination' onChange={handleChange} placeholder="Destination" className="text-xl outline-none my-5 text-start w-1/2 border-b-2 font-semibold" />
           <input type='time' name='departure' onChange={handleChange} placeholder="Departure" className="text-xl outline-none my-5 text-start w-1/2 border-b-2 font-semibold" />

@@ -1,4 +1,4 @@
-import { GET_DATA_TICKET, ADD_TICKET, DELETE_DATA_TICKET, EDIT_DATA_TICKET } from '../action/ticketAction';
+import { GET_DATA_TICKET, ADD_TICKET, DELETE_DATA_TICKET } from '../action/ticketAction';
 
 const initialState = {
     dataTicketResult: false,
@@ -30,12 +30,12 @@ const ticket = (state = initialState, action) => {
                 deleteTicketResult: action.payload.data,
                 isLoading: true
             }
-        case EDIT_DATA_TICKET:
-            return{
-                ...state,
-                deleteTicketResult: action.payload.data,
-                isLoading: true
-            }
+        // case EDIT_DATA_TICKET:
+        //     return{
+        //         ...state,
+        //         deleteTicketResult: action.payload.data,
+        //         isLoading: true
+        //     }
         default:
             return state
     }

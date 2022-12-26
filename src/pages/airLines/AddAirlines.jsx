@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import Navbar from '../../components/Navbar'
 import { addAirlines } from '../../config/redux/action/airlinesAction'
 
 const AddAirlines = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const [photo, setPhoto] = useState([])
   const [form, setForm] = useState({
     name: '',
@@ -26,13 +28,19 @@ const AddAirlines = () => {
     formData.append('name', form.name)
     formData.append('phone', form.phone)
     formData.append('photo', photo, photo.phone)
-    dispatch(addAirlines(formData))
+    try {
+      dispatch(addAirlines(formData))
+      alert('Add airlines success')
+      navigate('/airlines')
+    } catch (error) {
+      console.log(error);
+    }
   }
   return (
     <div>
-    <header>
+    <div>
       <Navbar tittle='List Airlines' link='/airlines' />
-    </header>
+    </div>
     <div className='container mx-auto mt-10'>
       <form onSubmit={handleSubmit} className='grid'>
         <p className='text-3xl font-bold mb-5'>Add AirLines :</p>
