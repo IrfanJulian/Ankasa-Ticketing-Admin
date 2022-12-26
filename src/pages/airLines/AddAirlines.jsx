@@ -37,7 +37,7 @@ const AddAirlines = () => {
       <form onSubmit={handleSubmit} className='grid'>
         <p className='text-3xl font-bold mb-5'>Add AirLines :</p>
         <input type="text" name='name' onChange={handleChange} placeholder='Airline' className='border-b-2 text-xl py-5 px-3 mt-5 w-1/2 font-semibold outline-none' />
-        <input type="text" name='phone' onChange={handleChange} placeholder='Class Available' className='border-b-2 text-xl py-5 px-3 mt-5 w-1/2 font-semibold outline-none' />
+        <input type="text" name='phone' onChange={handleChange} placeholder='Phone' className='border-b-2 text-xl py-5 px-3 mt-5 w-1/2 font-semibold outline-none' />
         <div className="flex my-10">
           <p className='text-xl font-semibold text-gray-400 pl-3'>Photo</p>
           <input name='photo' onChange={handlePhoto} type="file" className='ml-10' />
