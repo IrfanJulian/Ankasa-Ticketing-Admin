@@ -103,7 +103,7 @@ const Home = () => {
                     <p className='text-xl my-auto text-center'>{ticket.type}</p>
                 </div>
                 <div className="tittle grid border py-3 w-3/12">
-                    <img src={ticket.photo} alt="icon" className='w-[20rem] mx-auto' />
+                    <img src={ticket.photo} alt="icon" className='w-[8rem] h-[5rem] mx-auto' />
                 </div>
                 <div className="tittle flex border py-3 w-1/12">
                     <PopupDelete onClick={()=>handleDelete(ticket.id)} />

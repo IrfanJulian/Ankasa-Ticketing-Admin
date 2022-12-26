@@ -71,7 +71,7 @@ export const addTicket = (data) => {
         // getData 
         axios({
             method: 'POST',
-            url: 'https://gentle-tights-jay.cyclic.app/stock-ticket/register',
+            url: `${process.env.REACT_APP_URL_ADD_TICKET}`,
             data: data,
             headers: {
                 authorization: `Bearer ${token}`
