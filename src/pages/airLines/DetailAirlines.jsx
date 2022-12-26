@@ -19,7 +19,7 @@ const DetailAirline = () => {
             const token = localStorage.getItem('token')
                     const resDetail = await axios({
                     method: 'GET',
-                    url: `http://localhost:3006/airlines/get-detail-airlines/${id}`,
+                    url: `${process.env.REACT_APP_URL_GET_DETAIL_AIRLINES}${id}`,
                     headers: {
                         authorization: `Bearer ${token}`
                     }
@@ -27,7 +27,7 @@ const DetailAirline = () => {
                 setDetail(resDetail.data.data[0])
             }
             getDetail()
-        }, [])
+        }, [id])
     
     const handleChange = (e) => {
         setForm({
@@ -51,7 +51,7 @@ const DetailAirline = () => {
         try {
                 await axios({
                 method: 'PUT',
-                url: `http://localhost:3006/airlines/photo/${id}`,
+                url: `${process.env.REACT_APP_URL_EDIT_AIRLINES}${id}`,
                 data: formData,
                 headers: {
                     authorization: `Bearer ${token}`

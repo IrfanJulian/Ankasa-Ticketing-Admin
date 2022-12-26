@@ -3,7 +3,7 @@ import axios from 'axios'
 export const Login = (data, navigate) => async(dispatch) => {
     try {
         dispatch ({type: 'SET_LOGIN_PENDING'})
-        const result = await axios.post('https://gentle-tights-jay.cyclic.app/auth/login', data)
+        const result = await axios.post(`${process.env.REACT_APP_URL_LOGIN}`, data)
         const user = result.data.data
         dispatch ({type: 'SET_LOGIN_SUCCESS', payload: user })
         localStorage.setItem('token', user.token)

@@ -22,7 +22,7 @@ export const getDataAirlines = () => {
         // getData 
         axios({
             method: 'GET',
-            url: 'https://gentle-tights-jay.cyclic.app/airlines/all-airlines',
+            url: `${process.env.REACT_APP_URL_GET_AIRLINES}`,
             headers: {
                 authorization: `Bearer ${token}`
             }
@@ -70,7 +70,7 @@ export const addAirlines = (data) => {
         // getData 
         axios({
             method: 'POST',
-            url: 'https://gentle-tights-jay.cyclic.app/airlines/register',
+            url: `${process.env.REACT_APP_URL_ADD_AIRLINES}`,
             data: data,
             headers: {
                 authorization: `Bearer ${token}`
@@ -119,7 +119,7 @@ export const deleteDataAirlines = (id) => {
         // getData 
         axios({
             method: 'DELETE',
-            url: `https://gentle-tights-jay.cyclic.app/airlines/delete/${id}`,
+            url: `${process.env.REACT_APP_URL_DELETE_AIRLINES}${id}`,
             headers: {
                 authorization: `Bearer ${token}`
             }

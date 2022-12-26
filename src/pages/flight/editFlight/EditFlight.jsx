@@ -33,7 +33,7 @@ const EditFlight = () => {
     try {
       await axios({
         method: 'PUT',
-        url: `http://localhost:3006/stock-ticket/edit/${id}`,
+        url: `${process.env.REACT_APP_URL_EDIT_TICKET}${id}`,
         data: form,
         headers: {
           authorization: `Bearer ${token}`

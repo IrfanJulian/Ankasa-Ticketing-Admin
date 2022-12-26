@@ -24,7 +24,7 @@ export const getDataTicket = (page) => {
         // getData 
         axios({
             method: 'GET',
-            url: `https://gentle-tights-jay.cyclic.app/stock-ticket/getstockticket?page=${page}`,
+            url: `${process.env.REACT_APP_URL_GET_TICKET}${page}`,
             headers: {
                 authorization: `Bearer ${token}`
             }
@@ -120,7 +120,7 @@ export const deleteTicket = (id) => {
         // getData 
         axios({
             method: 'DELETE',
-            url: `https://gentle-tights-jay.cyclic.app/stock-ticket/delete/${id}`,
+            url: `${process.env.REACT_APP_URL_DELETE_TICKET}${id}`,
             headers: {
                 authorization: `Bearer ${token}`
             }
