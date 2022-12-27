@@ -47,7 +47,7 @@ const EditFlight = () => {
   return (
     <div>
     <div>
-    `<Navbar tittle='Home' link='/home' />
+    `<Navbar tittle='List Airlines' link='/airlines' tittle2='List Flight' link2='/home' />
     </div>
     <div className='container mx-auto mt-10'>
       <form onSubmit={handleSubmit} className='grid'>

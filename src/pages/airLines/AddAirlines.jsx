@@ -39,7 +39,7 @@ const AddAirlines = () => {
   return (
     <div>
     <div>
-      <Navbar tittle='List Airlines' link='/airlines' />
+    <Navbar tittle='List Airlines' link='/airlines' tittle2='List Flight' link2='/home' />
     </div>
     <div className='container mx-auto mt-10'>
       <form onSubmit={handleSubmit} className='grid'>

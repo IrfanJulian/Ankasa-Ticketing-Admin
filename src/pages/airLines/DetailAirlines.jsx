@@ -65,7 +65,7 @@ const DetailAirline = () => {
 
   return (
     <div>
-      <Navbar tittle='List Airlines' link='/airlines' />
+      <Navbar tittle='List Airlines' link='/airlines' tittle2='List Flight' link2='/home' />
       <div className='container mx-auto mt-10'>
             <p className='text-3xl font-bold'>Detail Airline :</p>
             <div className="list flex mt-16">

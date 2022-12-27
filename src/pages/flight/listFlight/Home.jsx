@@ -35,7 +35,7 @@ const Home = () => {
   return (
     <div>
         <div>
-            <Navbar tittle='Add Flight' link='/add-flight' />
+            <Navbar tittle='Add Flight' tittle2='Add Airlines' link='/add-flight' link2='/add-airlines' />
         </div>
 
         <div className='container mx-auto mt-10'>

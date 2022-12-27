@@ -33,7 +33,7 @@ const AirLines = () => {
     <div>
         <div className='mb-20'>
         <div>
-            <Navbar tittle='Add Airlines' link='/add-airlines' />
+            <Navbar tittle='Add Flight' tittle2='Add Airlines' link='/add-flight' link2='/add-airlines' />
         </div>
 
         {/* Content  */}
